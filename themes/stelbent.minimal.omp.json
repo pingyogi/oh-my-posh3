@@ -1,72 +1,55 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "osc99": true,
   "blocks": [
     {
-      "type": "prompt",
       "alignment": "right",
       "segments": [
         {
-          "type": "shell",
-          "style": "plain",
           "foreground": "#007acc",
-          "properties": {
-            "prefix": "",
-            "postfix": ""
-          }
+          "style": "plain",
+          "template": "{{ .Name }}",
+          "type": "shell"
         },
         {
-          "type": "root",
-          "style": "plain",
           "foreground": "#ff8080",
-          "properties": {
-            "prefix": " <#757575,>as</> ",
-            "postfix": "",
-            "root_icon": "root"
-          }
+          "style": "plain",
+          "template": " <#757575,>as</> root",
+          "type": "root"
         },
         {
-          "type": "time",
-          "style": "plain",
           "foreground": "#689f38",
           "properties": {
-            "prefix": " <#757575,>|</> ",
-            "postfix": "",
             "time_format": "15:04:05"
-          }
+          },
+          "style": "plain",
+          "template": " <#757575,>|</> {{ .CurrentDate | date .Format }}",
+          "type": "time"
         }
-      ]
+      ],
+      "type": "prompt"
     },
     {
-      "type": "prompt",
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "type": "session",
-          "style": "plain",
           "foreground": "#757575",
-          "properties": {
-            "prefix": "\u250c ",
-            "display_host": true
-          }
+          "style": "plain",
+          "template": "\u250c {{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
         },
         {
-          "type": "path",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#100e23",
           "background": "#91ddff",
+          "foreground": "#100e23",
+          "powerline_symbol": "\ue0b0",
           "properties": {
-            "style": "folder",
-            "enable_hyperlink": false
-          }
+            "style": "folder"
+          },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
         },
         {
-          "type": "git",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#100e23",
           "background": "#95ffa4",
           "background_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#ff9248{{ end }}",
@@ -74,9 +57,9 @@
             "{{ if gt .Ahead 0 }}#89d1dc{{ end }}",
             "{{ if gt .Behind 0 }}#c5b6ad{{ end }}"
           ],
+          "foreground": "#100e23",
+          "powerline_symbol": "\ue0b0",
           "properties": {
-            "fetch_status": true,
-            "fetch_stash_count": true,
             "branch_ahead_icon": "\u2191",
             "branch_behind_icon": "\u2193",
             "branch_gone": "\u2262",
@@ -84,59 +67,56 @@
             "branch_identical_icon": "\u2261",
             "cherry_pick_icon": "\u2713 ",
             "commit_icon": "\u25b7 ",
+            "fetch_stash_count": true,
+            "fetch_status": true,
             "merge_icon": "\u25f4 ",
             "no_commits_icon": "[no commits]",
             "rebase_icon": "\u2c62 ",
-            "tag_icon": "\u25b6 ",
-            "template": "{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} \u2502{{ end }}{{ if .Staging.Changed }} {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} {{ .StashCount }}{{ end }}"
-          }
+            "tag_icon": "\u25b6 "
+          },
+          "style": "powerline",
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} \u2502{{ end }}{{ if .Staging.Changed }} {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} {{ .StashCount }}{{ end }} ",
+          "type": "git"
         },
         {
-          "type": "terraform",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
+          "background": "#ffee58",
           "foreground": "#100e23",
-          "background": "#ffee58"
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .WorkspaceName }} ",
+          "type": "terraform"
         },
         {
-          "type": "exit",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
           "background": "#ff8080",
-          "properties": {
-            "template": "error"
-          }
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " error ",
+          "type": "status"
         }
-      ]
+      ],
+      "type": "prompt"
     },
     {
-      "type": "prompt",
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "type": "text",
-          "style": "plain",
           "foreground": "#757575",
-          "properties": {
-            "prefix": "",
-            "postfix": "",
-            "text": "\u2514 "
-          }
+          "style": "plain",
+          "template": "\u2514 ",
+          "type": "text"
         },
         {
-          "type": "text",
-          "style": "plain",
           "foreground": "#ffffff",
-          "properties": {
-            "prefix": "",
-            "postfix": "",
-            "text": "$"
-          }
+          "style": "plain",
+          "template": "$",
+          "type": "text"
         }
-      ]
+      ],
+      "type": "prompt"
     }
   ],
-  "final_space": true
+  "final_space": true,
+  "version": 3
 }

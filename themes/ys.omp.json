@@ -2,107 +2,87 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
-      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "type": "python",
-          "style": "plain",
           "foreground": "white",
           "properties": {
-            "prefix": "(",
-            "postfix": ")",
-            "display_version": false
-          }
+            "fetch_version": false
+          },
+          "style": "plain",
+          "template": "({{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }})",
+          "type": "python"
         }
-      ]
+      ],
+      "type": "prompt"
     },
     {
-      "type": "prompt",
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "type": "text",
-          "style": "plain",
           "foreground": "lightBlue",
-          "properties": {
-            "prefix": "",
-            "text": "#"
-          }
+          "style": "plain",
+          "template": "# ",
+          "type": "text"
         },
         {
-          "type": "root",
-          "style": "plain",
           "foreground": "red",
-          "properties": {
-            "root_icon": "%"
-          }
+          "style": "plain",
+          "template": " % ",
+          "type": "root"
         },
         {
-          "type": "session",
           "style": "plain",
-          "properties": {
-            "user_info_separator": " <darkGray>@</> ",
-            "prefix": "",
-            "user_color": "cyan",
-            "host_color": "green"
-          }
+          "template": "<cyan>{{ .UserName }}</> <darkGray>@</> <green>{{ .HostName }}</> ",
+          "type": "session"
         },
         {
-          "type": "path",
-          "style": "plain",
           "foreground": "lightYellow",
           "properties": {
-            "prefix": "<darkGray>in </>",
             "style": "full"
-          }
+          },
+          "style": "plain",
+          "template": "<darkGray>in </>{{ .Path }} ",
+          "type": "path"
         },
         {
+          "style": "plain",
+          "template": "<darkGray>on</> <white>git:</><cyan>{{ .HEAD }}</>{{ if .Working.Changed }}<red> x</>{{ end }} ",
           "type": "git",
-          "style": "plain",
           "properties": {
-            "prefix": "<darkGray>on</> <white>git:</>",
-            "template": "{{ .HEAD }}"
+            "fetch_status": true
           }
         },
         {
-          "type": "time",
-          "style": "plain",
           "foreground": "darkGray",
-          "properties": {
-            "prefix": "[",
-            "postfix": "]"
-          }
+          "style": "plain",
+          "template": "[{{ .CurrentDate | date .Format }}]",
+          "type": "time"
         },
         {
-          "type": "exit",
-          "style": "plain",
           "foreground": "red",
-          "properties": {
-            "template": "C:{{ if gt .Code 0 }}{{ .Code }}{{ end }}",
-            "always_numeric": true
-          }
+          "style": "plain",
+          "template": " C:{{ if gt .Code 0 }}{{ .Code }}{{ end }} ",
+          "type": "status"
         }
-      ]
+      ],
+      "type": "prompt"
     },
     {
-      "type": "prompt",
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "type": "text",
-          "style": "plain",
           "foreground": "lightRed",
-          "properties": {
-            "prefix": "",
-            "text": "$",
-            "postfix": ""
-          }
+          "style": "plain",
+          "template": "$",
+          "type": "text"
         }
-      ]
+      ],
+      "type": "prompt"
     }
   ],
-  "final_space": true
+  "final_space": true,
+  "version": 3
 }

@@ -4,11 +4,4 @@ on: [pull_request]
 
 jobs:
   commitlint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v2
-        with:
-          configFile: './.commitlintrc.yml'
+    uses: jandedobbeleer/workflows/.github/workflows/commits.yml@main

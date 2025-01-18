@@ -4,7 +4,7 @@ on:
       - 'README.md'
       - 'CONTRIBUTING.md'
       - 'COPYING'
-      - 'docs/**'
+      - 'website/**'
       - '.github/*.md'
       - '.github/FUNDING.yml'
 
@@ -19,16 +19,17 @@ jobs:
       run:
         working-directory: ${{ github.workspace }}/src
     steps:
-    - name: Install Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.17
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+    - name: Install Go 🗳
+      uses: ./.github/workflows/composite/bootstrap-go
     - name: Golang CI
-      uses: golangci/golangci-lint-action@v2
+      uses: golangci/golangci-lint-action@ec5d18412c0aeab7936cb16880d708ba2a64e1ae
       with:
-        version: latest
         working-directory: src
+    - name: Fieldalignment
+      run: |
+        go install golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@latest
+        fieldalignment "./..."
     - name: Unit Tests
-      run: go test . -v
+      run: go test -v ./...

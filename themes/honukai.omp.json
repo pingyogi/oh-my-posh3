@@ -2,96 +2,78 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
-      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "type": "session",
-          "style": "plain",
           "foreground": "#FFFFFF",
-          "properties": {
-            "user_info_separator": " <#ffffff>in</> ",
-            "prefix": "<#0377C8># </>",
-            "user_color": "#0377C8",
-            "host_color": "#4A9207"
-          }
+          "style": "plain",
+          "template": "<#0377C8># </><#0377C8>{{ .UserName }}</> <#ffffff>in</> <#4A9207>{{ .HostName }}</> ",
+          "type": "session"
         },
         {
-          "type": "path",
-          "style": "plain",
           "foreground": "#0973C0",
           "properties": {
-            "folder_icon": "\uF115",
-            "folder_separator_icon": " \uE0B1 ",
+            "folder_icon": "\uf115",
+            "folder_separator_icon": " \ue0b1 ",
             "style": "full"
-          }
+          },
+          "style": "plain",
+          "template": " {{ .Path }} ",
+          "type": "path"
         },
         {
-          "type": "git",
-          "style": "plain",
           "foreground": "#B8B80A",
-          "properties": {
-            "prefix": "<#ffffff>on git:</>",
-            "template": "{{ .HEAD }}"
-          }
+          "style": "plain",
+          "template": "<#ffffff>on git:</>{{ .HEAD }} ",
+          "type": "git"
         }
-      ]
+      ],
+      "type": "prompt"
     },
     {
-      "type": "prompt",
       "alignment": "right",
       "segments": [
         {
-          "type": "time",
-          "style": "plain",
           "foreground": "#ffffff",
-          "properties": {
-            "prefix": "[",
-            "postfix": "]"
-          }
+          "style": "plain",
+          "template": "[{{ .CurrentDate | date .Format }}]",
+          "type": "time"
         }
-      ]
+      ],
+      "type": "prompt"
     },
     {
-      "type": "prompt",
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "type": "root",
-          "style": "plain",
           "foreground": "#CECE04",
-          "properties": {
-            "prefix": ""
-          }
+          "style": "plain",
+          "template": "\uf0e7 ",
+          "type": "root"
         },
         {
-          "type": "python",
-          "style": "plain",
           "foreground": "#100e23",
-          "properties": {
-            "prefix": "\uE235 "
-          }
+          "style": "plain",
+          "template": "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "type": "python"
         },
         {
-          "type": "exit",
-          "style": "plain",
           "foreground": "#CB4B16",
-          "properties": {
-            "template": "{{ .Text }}"
-          }
+          "style": "plain",
+          "template": " {{ reason .Code }} ",
+          "type": "status"
         },
         {
-          "type": "text",
-          "style": "plain",
           "foreground": "#CC4B16",
-          "properties": {
-            "prefix": "",
-            "text": "\u279C"
-          }
+          "style": "plain",
+          "template": "\u279c ",
+          "type": "text"
         }
-      ]
+      ],
+      "type": "prompt"
     }
   ],
-  "final_space": true
+  "final_space": true,
+  "version": 3
 }

@@ -2,63 +2,56 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
-      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "type": "exit",
-          "style": "plain",
           "foreground": "#CB4B16",
-          "properties": {
-            "template": "{{ .Text }}"
-          }
+          "style": "plain",
+          "template": " {{ reason .Code }} ",
+          "type": "status"
         },
         {
-          "type": "root",
+          "foreground": "#CECE04",
           "style": "plain",
-          "foreground": "#CECE04"
+          "template": " \uf0e7 ",
+          "type": "root"
         },
         {
-          "type": "session",
+          "foreground": "#FFFFFF",
           "style": "plain",
-          "foreground": "#FFFFFF"
+          "template": "{{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
         },
         {
-          "type": "path",
-          "style": "plain",
           "foreground": "#0973C0",
           "properties": {
-            "style": "full",
-            "prefix": ""
-          }
+            "style": "full"
+          },
+          "style": "plain",
+          "template": "{{ .Path }} ",
+          "type": "path"
         },
         {
-          "type": "git",
-          "style": "plain",
           "foreground": "#C1C106",
-          "properties": {
-            "prefix": "<#ffffff>git:</>",
-            "template": "{{ .HEAD }}"
-          }
+          "style": "plain",
+          "template": "<#ffffff>git:</>{{ .HEAD }} ",
+          "type": "git"
         },
         {
-          "type": "python",
-          "style": "plain",
           "foreground": "#100e23",
-          "properties": {
-            "prefix": " \uE235 "
-          }
+          "style": "plain",
+          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "type": "python"
         },
         {
-          "type": "text",
-          "style": "plain",
           "foreground": "#ffffff",
-          "properties": {
-            "prefix": "",
-            "text": "<#CB4B16>\u276F</><#CACA02>\u276F</><#4E9A06>\u276F</>"
-          }
+          "style": "plain",
+          "template": "<#CB4B16>\u276f</><#CACA02>\u276f</><#4E9A06>\u276f</> ",
+          "type": "text"
         }
-      ]
+      ],
+      "type": "prompt"
     }
-  ]
+  ],
+  "version": 3
 }
