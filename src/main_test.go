@@ -1,25 +1,36 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/jandedobbeleer/oh-my-posh/src/cli"
+	"github.com/jandedobbeleer/oh-my-posh/src/prompt"
 )
 
-func TestConsoleBackgroundColorTemplate(t *testing.T) {
-	cases := []struct {
-		Case     string
-		Expected string
-		Term     string
-	}{
-		{Case: "Inside vscode", Expected: "#123456", Term: "vscode"},
-		{Case: "Outside vscode", Expected: "", Term: "windowsterminal"},
+func BenchmarkInit(b *testing.B) {
+	cmd := cli.RootCmd
+	// needs to be a non-existing file as we panic otherwise
+	cmd.SetArgs([]string{"init", "fish", "--print", "--silent"})
+	out := bytes.NewBufferString("")
+	cmd.SetOut(out)
+
+	for i := 0; i < b.N; i++ {
+		_ = cmd.Execute()
+	}
+}
+
+func BenchmarkPrimary(b *testing.B) {
+	cmd := cli.RootCmd
+	// needs to be a non-existing file as we panic otherwise
+	cmd.SetArgs([]string{"print", prompt.PRIMARY, "--pwd", "/Users/jan/Code/oh-my-posh/src", "--shell", "fish", "--silent"})
+	out := bytes.NewBufferString("")
+	cmd.SetOut(out)
+
+	for i := 0; i < b.N; i++ {
+		_ = cmd.Execute()
 	}
 
-	for _, tc := range cases {
-		env := new(MockedEnvironment)
-		env.On("getenv", "TERM_PROGRAM").Return(tc.Term)
-		color := getConsoleBackgroundColor(env, "{{ if eq \"vscode\" .Env.TERM_PROGRAM }}#123456{{end}}")
-		assert.Equal(t, tc.Expected, color, tc.Case)
-	}
+	fmt.Println("")
 }

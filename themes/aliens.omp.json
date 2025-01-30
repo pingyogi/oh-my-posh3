@@ -2,47 +2,49 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
-      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "type": "session",
-          "style": "diamond",
-          "foreground": "#ffffff",
           "background": "#61AFEF",
-          "leading_diamond": "\uE0B6",
-          "trailing_diamond": "\uE0B0"
+          "foreground": "#ffffff",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "session"
         },
         {
-          "type": "path",
-          "style": "powerline",
-          "powerline_symbol": "\uE0B0",
-          "foreground": "#ffffff",
           "background": "#C678DD",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
           "properties": {
             "style": "full"
-          }
-        },
-        {
-          "type": "git",
+          },
           "style": "powerline",
-          "powerline_symbol": "\uE0B0",
-          "foreground": "#193549",
-          "background": "#95ffa4",
-          "properties": {
-            "template": "{{ .HEAD }}"
-          }
+          "template": " {{ .Path }} ",
+          "type": "path"
         },
         {
-          "type": "python",
-          "style": "diamond",
-          "foreground": "#ffffff",
+          "background": "#95ffa4",
+          "foreground": "#193549",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .HEAD }} ",
+          "type": "git"
+        },
+        {
           "background": "#FF6471",
-          "leading_diamond": "<transparent,background>\uE0B0</>",
-          "trailing_diamond": "\uE0B4"
+          "foreground": "#ffffff",
+          "leading_diamond": "<transparent,background>\ue0b0</>",
+          "style": "diamond",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "trailing_diamond": "\ue0b4",
+          "type": "python"
         }
-      ]
+      ],
+      "type": "prompt"
     }
   ],
-  "final_space": true
+  "final_space": true,
+  "version": 3
 }

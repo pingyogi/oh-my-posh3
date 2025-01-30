@@ -2,67 +2,57 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
-      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "type": "session",
-          "style": "plain",
           "foreground": "#45F1C2",
-          "properties": {
-            "display_host": false,
-            "prefix": "\uf508 ",
-            "postfix": " on"
-          }
+          "style": "plain",
+          "template": "\ueb99 {{ .UserName }} on",
+          "type": "session"
         },
         {
-          "type": "path",
-          "style": "plain",
           "foreground": "#0CA0D8",
           "properties": {
-            "style": "full",
-            "prefix": " \uf07b ",
-            "folder_separator_icon": "/"
-          }
+            "folder_separator_icon": "/",
+            "style": "full"
+          },
+          "style": "plain",
+          "template": " \uf07b {{ .Path }} ",
+          "type": "path"
         },
         {
-          "type": "git",
-          "style": "plain",
-          "powerline_symbol": "\uE0B0",
           "foreground": "#14A5AE",
+          "powerline_symbol": "\ue0b0",
           "properties": {
             "fetch_stash_count": true,
-            "fetch_upstream_icon": true,
-            "prefix": "",
-            "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \uF692 {{ .StashCount }}{{ end }}"
-          }
+            "fetch_upstream_icon": true
+          },
+          "style": "plain",
+          "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "type": "git"
         }
-      ]
+      ],
+      "type": "prompt"
     },
     {
-      "type": "prompt",
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "type": "root",
-          "style": "plain",
           "foreground": "#cd5e42",
-          "properties": {
-            "prefix": "",
-            "root_icon": "\ue3bf"
-          }
+          "style": "plain",
+          "template": "\ue3bf ",
+          "type": "root"
         },
         {
-          "type": "text",
-          "style": "plain",
           "foreground": "#CD4277",
-          "properties": {
-            "prefix": "",
-            "text": "\u0023"
-          }
+          "style": "plain",
+          "template": "# ",
+          "type": "text"
         }
-      ]
+      ],
+      "type": "prompt"
     }
-  ]
+  ],
+  "version": 3
 }

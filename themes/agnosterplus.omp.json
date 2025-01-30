@@ -2,57 +2,56 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
-      "type": "prompt",
-      "alignment": "right",
-      "vertical_offset": -1,
+      "type": "rprompt",
       "segments": [
         {
-          "type": "time",
-          "style": "plain",
           "foreground": "#007ACC",
           "properties": {
             "time_format": "15:04:05"
-          }
+          },
+          "style": "plain",
+          "template": " {{ .CurrentDate | date .Format }} ",
+          "type": "time"
         }
       ]
     },
     {
-      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "type": "session",
-          "style": "powerline",
-          "powerline_symbol": "\uE0B0",
+          "background": "#ffffff",
           "foreground": "#100e23",
-          "background": "#ffffff"
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
         },
         {
-          "type": "path",
-          "style": "powerline",
-          "powerline_symbol": "\uE0B0",
-          "foreground": "#100e23",
           "background": "#91ddff",
+          "foreground": "#100e23",
+          "powerline_symbol": "\ue0b0",
           "properties": {
-            "home_icon": "\uF7DB",
-            "folder_icon": "\uF115",
-            "folder_separator_icon": " \uE0B1 ",
+            "folder_icon": "\uf115",
+            "folder_separator_icon": " \ue0b1 ",
+            "home_icon": "\ueb06",
             "style": "agnoster"
-          }
+          },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
         },
         {
-          "type": "git",
-          "style": "powerline",
-          "powerline_symbol": "\uE0B0",
-          "foreground": "#193549",
           "background": "#95ffa4",
-          "properties": {
-            "template": "{{ .HEAD }}"
-          }
+          "foreground": "#193549",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .HEAD }} ",
+          "type": "git"
         }
-      ]
+      ],
+      "type": "prompt"
     }
   ],
-  "final_space": true
+  "final_space": true,
+  "version": 3
 }

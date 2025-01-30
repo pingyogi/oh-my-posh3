@@ -1,16 +1,13 @@
 run:
-  timeout: 5m
+  timeout: 10m
   allow-parallel-runners: true
 linters:
   disable-all: true
   enable:
     - bodyclose
-    - deadcode
-    - depguard
     - dupl
     - errcheck
     - exhaustive
-    - gochecknoinits
     - goconst
     - gocritic
     - gocyclo
@@ -26,27 +23,23 @@ linters:
     - noctx
     - nolintlint
     - rowserrcheck
-    - exportloopref
+    - copyloopvar
     - staticcheck
-    - structcheck
     - typecheck
     - unconvert
     - unparam
     - unused
-    - varcheck
     - whitespace
     - lll
 linters-settings:
   gocritic:
     enabled-tags:
       - diagnostic
-      - experimental
+      # - experimental
       - opinionated
       - performance
       - style
     disabled-tags:
       - experimental
-    disabled-checks:
-      - ifElseChain
   lll:
     line-length: 180
